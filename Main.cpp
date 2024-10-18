@@ -2129,8 +2129,8 @@ int main() noexcept//主线程 (加载多线程, 一些杂项功能)
 	if (FindWindow(0, L"Pastehook - Menu")) { Window::Message_Box("Pastehook Error", "The program is already running.", MB_ICONSTOP); exit(0); }//防止多开程序
 	//----------------------------------------------------------------------------------------------------------------------------------
 	System::URL_READ UserID_READ = { "Cache_UserID" }; BOOL Attest = false;//认证变量
-	//if (UserID_READ.StoreMem("https://github.com/Coslly/Rensen/blob/main/Cloud%20Files/UserID.uid?raw=true"))//Github读取有效用户ID
-	if (UserID_READ.StoreMem("https://raw.githubusercontent.com/PedroHenriqueSilvac/Cloud_Filles/refs/heads/main/UserID.uid"))//Github读取有效用户ID
+	if (UserID_READ.StoreMem("https://github.com/PedroHenriqueSilvac/Cloud_Filles/blob/main/UserID.uid?raw=true"))//Github读取有效用户ID
+	//if (UserID_READ.StoreMem("https://raw.githubusercontent.com/PedroHenriqueSilvac/Cloud_Filles/refs/heads/main/UserID.uid"))//Github读取有效用户ID
 	{
 		for (short i = 0; i <= 10000; ++i) { if (System::Get_UserName() == UserID_READ.Read(i) || Variable::String_Upper(UserID_READ.Read(i)) == "BYPASS") { Attest = true; break; } }//遍历检测并修改认证
 		UserID_READ.Release();//释放缓存
@@ -2139,8 +2139,8 @@ int main() noexcept//主线程 (加载多线程, 一些杂项功能)
 	if (!Attest) { Window::Message_Box("Rensen Attest - " + System::Get_UserName(), "Your identity cannot be passed.\n\nUnable to access from Chinese IP.\n\nAuthor: https://github.com/Coslly\n", MB_ICONSTOP); exit(0); }//未被认证则直接退出
 	//----------------------------------------------------------------------------------------------------------------------------------
 	System::URL_READ AutoUpdate = { "Cache_Update" };//自动更新系统 (中国IP用户需要挂梯子)
-	//if (AutoUpdate.StoreMem("https://github.com/Coslly/Rensen/blob/main/Rensen/Rensen/Main.cpp?raw=true"))//版本号更新检查
-	if (AutoUpdate.StoreMem("https://raw.githubusercontent.com/PedroHenriqueSilvac/Cloud_Filles/refs/heads/main/Main.cpp"))//版本号更新检查
+	if (AutoUpdate.StoreMem("https://github.com/PedroHenriqueSilvac/Cloud_Filles/blob/main/Main.cpp?raw=true"))//版本号更新检查
+	//if (AutoUpdate.StoreMem("https://raw.githubusercontent.com/PedroHenriqueSilvac/Cloud_Filles/refs/heads/main/Main.cpp"))//版本号更新检查
 	{
 		auto Version = AutoUpdate.Read(3); Version.erase(0, 29); Version.erase(Version.size() - 15, 999);//擦除无用字符只获取版本号
 		AutoUpdate.Release();//释放缓存
